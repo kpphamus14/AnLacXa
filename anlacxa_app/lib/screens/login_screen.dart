@@ -1,7 +1,40 @@
 import 'package:flutter/material.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
+
+  @override
+  State<LoginScreen> createState() {
+    return _LoginScreenState();
+  }
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  bool isPasswordVisible = false;
+  Icon passwordIcon = const Icon(Icons.visibility_off);
+  final _usernameController = TextEditingController();
+  final _passwordController = TextEditingController();
+
+  void togglePassword() {
+    setState(
+      () {
+        isPasswordVisible = !isPasswordVisible;
+        if (isPasswordVisible) {
+          passwordIcon = const Icon(Icons.visibility);
+        } else {
+          passwordIcon = const Icon(Icons.visibility_off);
+        }
+      },
+    );
+  }
+
+  @override
+  void dispose() {
+    _usernameController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,31 +54,113 @@ class LoginScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(20),
                   color: Colors.white,
                 ),
-                child: const Column(
-                  children: [
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      'Login',
-                      style: TextStyle(
-                        color: Colors.green,
-                        fontSize: 40,
-                        fontWeight: FontWeight.bold,
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      const SizedBox(
+                        height: 10,
                       ),
-                    ),
-                    Text(
-                      'Some Text Here',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 15,
+                      Text(
+                        'Login',
+                        style: TextStyle(
+                          color: Colors.green.shade500,
+                          fontSize: 40,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                    SizedBox(
-                      height: 30,
-                    ),
-                    TextField()
-                  ],
+                      const Text(
+                        'Some Text Here',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 15,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(20, 30, 20, 30),
+                        child: Column(
+                          children: [
+                            TextField(
+                              controller: _usernameController,
+                              autofocus: false,
+                              style: const TextStyle(fontSize: 18),
+                              decoration: InputDecoration(
+                                filled: true,
+                                fillColor: Colors.green.shade100,
+                                hintText: 'Username',
+                                contentPadding:
+                                    const EdgeInsets.fromLTRB(14, 8, 14, 8),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Colors.green.shade100,
+                                  ),
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide:
+                                      BorderSide(color: Colors.green.shade100),
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 30),
+                            TextField(
+                              controller: _passwordController,
+                              autofocus: false,
+                              obscureText: isPasswordVisible ? false : true,
+                              style: const TextStyle(fontSize: 18),
+                              decoration: InputDecoration(
+                                filled: true,
+                                fillColor: Colors.green.shade100,
+                                hintText: 'Password',
+                                contentPadding:
+                                    const EdgeInsets.fromLTRB(14, 8, 14, 8),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Colors.green.shade100,
+                                  ),
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide:
+                                      BorderSide(color: Colors.green.shade100),
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
+                                suffixIcon: IconButton(
+                                  onPressed: togglePassword,
+                                  icon: passwordIcon,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 60),
+                            ElevatedButton(
+                              onPressed: () {
+                                print(_usernameController);
+                                print(_passwordController);
+                              },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.green.shade500,
+                                foregroundColor: Colors.white,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
+                                minimumSize: const Size(double.infinity, 40),
+                              ),
+                              child: const Text(
+                                'Login',
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -55,28 +170,3 @@ class LoginScreen extends StatelessWidget {
     );
   }
 }
-
-
-// children: [
-//         Stack(
-//           children: [
-//             Image.asset(
-//               'assets/images/1.png',
-//               width: double.infinity,
-//             ),
-//             Expanded(
-//               child: Container(
-//                 width: double.infinity,
-//                 height: double.infinity,
-//                 decoration: const BoxDecoration(
-//                   color: Colors.white,
-//                   borderRadius: BorderRadius.only(
-//                     topLeft: Radius.circular(30),
-//                     topRight: Radius.circular(30),
-//                   ),
-//                 ),
-//               ),
-//             )
-//           ],
-//         ),
-//       ],
