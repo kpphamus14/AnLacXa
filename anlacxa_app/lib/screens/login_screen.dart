@@ -55,111 +55,110 @@ class _LoginScreenState extends State<LoginScreen> {
                   color: Colors.white,
                 ),
                 child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Text(
-                        'Login',
-                        style: TextStyle(
-                          color: Colors.green.shade500,
-                          fontSize: 40,
-                          fontWeight: FontWeight.bold,
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 10, 20, 30),
+                    child: Column(
+                      children: [
+                        Text(
+                          'Login',
+                          style: TextStyle(
+                            color: Colors.green.shade500,
+                            fontSize: 40,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                      ),
-                      const Text(
-                        'Some Text Here',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 15,
+                        const Text(
+                          'Some Text Here',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 15,
+                          ),
                         ),
-                      ),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(20, 30, 20, 30),
-                        child: Column(
-                          children: [
-                            TextField(
-                              controller: _usernameController,
-                              autofocus: false,
-                              style: const TextStyle(fontSize: 18),
-                              decoration: InputDecoration(
-                                filled: true,
-                                fillColor: Colors.green.shade100,
-                                hintText: 'Username',
-                                contentPadding:
-                                    const EdgeInsets.fromLTRB(14, 8, 14, 8),
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Colors.green.shade100,
-                                  ),
-                                  borderRadius: BorderRadius.circular(15),
-                                ),
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide:
-                                      BorderSide(color: Colors.green.shade100),
-                                  borderRadius: BorderRadius.circular(15),
-                                ),
-                              ),
-                            ),
-                            const SizedBox(height: 30),
-                            TextField(
-                              controller: _passwordController,
-                              autofocus: false,
-                              obscureText: isPasswordVisible ? false : true,
-                              style: const TextStyle(fontSize: 18),
-                              decoration: InputDecoration(
-                                filled: true,
-                                fillColor: Colors.green.shade100,
-                                hintText: 'Password',
-                                contentPadding:
-                                    const EdgeInsets.fromLTRB(14, 8, 14, 8),
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Colors.green.shade100,
-                                  ),
-                                  borderRadius: BorderRadius.circular(15),
-                                ),
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide:
-                                      BorderSide(color: Colors.green.shade100),
-                                  borderRadius: BorderRadius.circular(15),
-                                ),
-                                suffixIcon: IconButton(
-                                  onPressed: togglePassword,
-                                  icon: passwordIcon,
-                                ),
-                              ),
-                            ),
-                            const SizedBox(height: 60),
-                            ElevatedButton(
-                              onPressed: () {
-                                print(_usernameController);
-                                print(_passwordController);
-                              },
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.green.shade500,
-                                foregroundColor: Colors.white,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(15),
-                                ),
-                                minimumSize: const Size(double.infinity, 40),
-                              ),
-                              child: const Text(
-                                'Login',
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                          ],
+                        const SizedBox(
+                          height: 30,
                         ),
-                      ),
-                    ],
+                        TextField(
+                          onTapOutside: (event) {
+                            FocusManager.instance.primaryFocus?.unfocus();
+                          },
+                          controller: _usernameController,
+                          autofocus: false,
+                          style: const TextStyle(fontSize: 18),
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Colors.green.shade100,
+                            hintText: 'Username',
+                            contentPadding:
+                                const EdgeInsets.fromLTRB(14, 8, 14, 8),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Colors.green.shade100,
+                              ),
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.green.shade100),
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 30),
+                        TextField(
+                          onTapOutside: (event) {
+                            FocusManager.instance.primaryFocus?.unfocus();
+                          },
+                          controller: _passwordController,
+                          autofocus: false,
+                          obscureText: isPasswordVisible ? false : true,
+                          style: const TextStyle(fontSize: 18),
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Colors.green.shade100,
+                            hintText: 'Password',
+                            contentPadding:
+                                const EdgeInsets.fromLTRB(14, 8, 14, 8),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Colors.green.shade100,
+                              ),
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.green.shade100),
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            suffixIcon: IconButton(
+                              onPressed: togglePassword,
+                              icon: passwordIcon,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 60),
+                        ElevatedButton(
+                          onPressed: () {
+                            print(_usernameController);
+                            print(_passwordController);
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.green.shade500,
+                            foregroundColor: Colors.white,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            minimumSize: const Size(double.infinity, 40),
+                          ),
+                          child: const Text(
+                            'Login',
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
