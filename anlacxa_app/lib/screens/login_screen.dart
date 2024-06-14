@@ -102,6 +102,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               borderRadius: BorderRadius.circular(15),
                             ),
                           ),
+                          textInputAction: TextInputAction.next,
                         ),
                         const SizedBox(height: 30),
                         TextField(
@@ -134,6 +135,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               icon: passwordIcon,
                             ),
                           ),
+                          textInputAction: TextInputAction.done,
                         ),
                         const SizedBox(height: 60),
                         ElevatedButton(
